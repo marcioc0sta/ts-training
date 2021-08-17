@@ -5,9 +5,9 @@ export function escape (
 ) {
   const metodoOriginal = descriptor.value
   descriptor.value = function (...args: any[]) {
-    const result = metodoOriginal.apply(this, args)
+    let result = metodoOriginal.apply(this, args)
     if(typeof result === 'string') {
-      result.replace(/<script>[\s\S]*?<\/script>/, '');
+      result = result.replace(/<script>[\s\S]*?<\/script>/, '');
     }
     return result
   }
